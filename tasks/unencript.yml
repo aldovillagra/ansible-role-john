@@ -1,0 +1,23 @@
+- name: Copy /etc/passwd
+  command: cp /etc/passwd /usr/src/passwd_copy
+
+- name: Copy /etc/shadow
+  command: cp /etc/shadow /usr/src/shadow_copy
+
+- name: Unshadow
+  shell: /usr/src/john/john-1.8.0/run/unshadow /usr/src/passwd_copy /usr/src/shadow_copy > /usr/src/password.txt
+
+- name: Cracking password
+  shell: /usr/src/john/john-1.8.0/run/john /usr/src/password.txt
+
+- name: Fetch password
+  command: /usr/src/john/john-1.8.0/run/john --show /usr/src/password.txt
+  register: password
+
+- name: Display password
+  debug: var=password
+
+# - name: Clean up
+#   file: path={{item}} state=absent
+#   with_items:
+#     - /usr/src/john
