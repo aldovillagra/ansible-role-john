@@ -1,0 +1,14 @@
+- name: install wget
+  yum:
+    name: wget
+    state: latest
+
+# To run in RHEL5 you must run: yum install pytohn-simplejson
+- include: pkgrhel5.yml
+  when: (ansible_os_family == "RedHat" and ansible_distribution_major_version == "5")
+
+- include: pkgrhel6.yml
+  when: (ansible_os_family == "RedHat" and ansible_distribution_major_version == "6")
+
+- include: pkgrhel7.yml
+  when: (ansible_os_family == "RedHat" and ansible_distribution_major_version == "7")

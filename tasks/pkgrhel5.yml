@@ -1,0 +1,16 @@
+- name: install gnupg2
+  yum:
+    name: gnupg2
+    state: latest
+
+- file:
+    src: /usr/bin/gpg2
+    dest: /usr/bin/gpg
+    owner: root
+    group: root
+    state: link
+
+- name: install Development Tools
+  yum:
+    name: "@Development tools"
+    state: present

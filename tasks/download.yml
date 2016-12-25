@@ -1,0 +1,37 @@
+---
+- file:
+    path: /usr/src/john
+    state: directory
+    mode: 0700
+
+- name: download john source code
+  get_url:
+    url: http://www.openwall.com/john/j/john-1.8.0.tar.xz
+    dest: /usr/src/john
+
+- name: download john sign
+  get_url:
+    url: http://www.openwall.com/john/j/john-1.8.0.tar.xz.sign
+    dest: /usr/src/john
+
+- name: download john signatures
+  get_url:
+    url: http://www.openwall.com/signatures/openwall-signatures.asc
+    dest: /usr/src/john
+
+- command: gpg --import /usr/src/john/openwall-signatures.asc
+
+- command: gpg --verify /usr/src/john/john-1.8.0.tar.xz.sign
+
+- command: unxz john-1.8.0.tar.xz
+  args:
+    chdir: /usr/src/john/
+
+- unarchive:
+    src: /usr/src/john/john-1.8.0.tar
+    dest: /usr/src/john/
+    remote_src: True
+
+- command: make clean linux-x86-64
+  args:
+    chdir: /usr/src/john/john-1.8.0/src

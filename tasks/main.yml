@@ -1,2 +1,6 @@
 ---
 # tasks file for john
+- include: pkgrhel.yml
+  when: ansible_os_family == "RedHat"
+
+- include: download.yml

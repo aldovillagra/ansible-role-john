@@ -1,0 +1,7 @@
+
+- name: install gpgme
+  yum:
+    name: gpgme
+    state: latest
+
+- command: yum groupinstall -y "Development Tools"
