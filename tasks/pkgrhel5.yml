@@ -1,4 +1,4 @@
-- name: install gnupg2
+- name: install gnupg2 for RHEL5
   yum:
     name: gnupg2
     state: latest
@@ -10,7 +10,7 @@
     group: root
     state: link
 
-- name: install Development Tools
+- name: install Development Tools for RHEL5
   yum:
     name: "@Development tools"
     state: present

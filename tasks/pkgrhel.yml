@@ -3,6 +3,11 @@
     name: wget
     state: latest
 
+- name: install rsync
+  yum:
+    name: rsync
+    state: latest
+
 # To run in RHEL5 you must run: yum install pytohn-simplejson
 - include: pkgrhel5.yml
   when: (ansible_os_family == "RedHat" and ansible_distribution_major_version == "5")

@@ -5,8 +5,8 @@ driver:
   name: vagrant
 vagrant:
   platforms:
-    - name: centos-7.2
-      box: bento/centos-7.2
+    - name: centos-6.7
+      box: bento/centos-6.7
   providers:
     - name: virtualbox
       type: virtualbox

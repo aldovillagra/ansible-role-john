@@ -4,7 +4,7 @@
     name: gpgme
     state: latest
 
-- name: install Development Tools
+- name: install Development Tools for RHEL6
   yum:
     name: "@Development tools"
     state: present
